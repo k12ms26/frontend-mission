@@ -3,7 +3,7 @@
     <div>
       <input v-model="rotateString" />
       <button @click="rotate" class="button-style">제출</button>
-      <input type="button" @click="openAlert" value="알림" class="button-style" />
+      <button @click="openAlert" class="button-style">알림</button>
     </div>
     <div class="input-string-style">
       <span data-test="rotate-string">{{ rotateString }}</span>
