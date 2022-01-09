@@ -27,7 +27,6 @@ export default {
     const state = reactive({
       rotateString: '',
       count: 0,
-      open: false,
     });
 
     const methods = reactive({
@@ -38,7 +37,6 @@ export default {
       },
       openAlert: () => {
         state.count += 1;
-        state.open = true;
         const alertDialog = document.getElementById('alert-dialog');
         alertDialog.showModal();
       },
