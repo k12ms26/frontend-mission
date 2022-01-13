@@ -1,14 +1,20 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <StringItem />
   </div>
 </template>
 
 <script>
+import StringItem from '@/components/StringItem.vue';
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String,
+  },
+  components: {
+    StringItem,
   },
 };
 </script>
