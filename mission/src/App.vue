@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div>
     <div id="nav">
       <router-link to="/">Home</router-link> |
@@ -6,6 +7,9 @@
     </div>
     <router-view />
   </div>
+=======
+  <router-view />
+>>>>>>> 1377ebc8fc47eb8797d0845d3bfb3f68eb37c18b
 </template>
 
 <style>
@@ -15,18 +19,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>
