@@ -1,6 +1,7 @@
 <template>
   <div id='product-info-page'>
     <div>{{ productInfo }}</div>
+    <fa icon="arrow-up" />
   </div>
 </template>
 

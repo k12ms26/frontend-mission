@@ -13,7 +13,7 @@ import store from './store';
 library.add(fas, far, fab);
 
 const app = createApp(App);
-app.component("font-awesome-icon", FontAwesomeIcon);
-
+app.component('fa', FontAwesomeIcon);
 app.use(store).use(router);
+
 app.mount('#app');
