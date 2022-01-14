@@ -1,5 +1,6 @@
 <template>
-<div id='item-info-page'></div>
+  <div id='item-info-page'>
+  </div>
 </template>
 
 <script>
