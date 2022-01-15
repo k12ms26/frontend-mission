@@ -59,6 +59,7 @@
             {{ productInfo.salePercentage }}%
           </div>
           <div
+            :v-if="productInfo.isOnSale"
             class="product-info"
             data-test="productSalePrice"
           >
