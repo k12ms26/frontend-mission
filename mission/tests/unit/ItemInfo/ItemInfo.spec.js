@@ -35,6 +35,14 @@ describe('ItemInfoPage', () => {
     expect(typeof productInfo.description).toBe('string');
   });
 
+  test('check seller data type', () => {
+    const sellerInfo = wrapper.vm.productInfo.sellerInfo;
+    expect(typeof sellerInfo).toBe('object');
+    expect(typeof sellerInfo.image).toBe('string');
+    expect(typeof sellerInfo.name).toBe('string');
+    expect(typeof sellerInfo.tag).toBe('object');
+  });
+
   test('check review data type', () => {
     const reviewInfo = wrapper.vm.reviewInfo;
     expect(typeof reviewInfo).toBe('object');
