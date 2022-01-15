@@ -7,6 +7,6 @@ describe('StringItem.vue', () => {
 
     const span = wrapper.find('span');
     await span.findAll('rotate-string');
-    expect(span.text()).toBe('elloh');
+    expect(span.text()).toBe('');
   });
 });

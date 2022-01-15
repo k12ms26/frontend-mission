@@ -88,6 +88,10 @@ export default {
 </script>
 
 <style scoped>
+#item-info-page {
+  margin-bottom: 50px;
+}
+
 .fixed-cart-button {
   position: fixed;
   bottom: 0;

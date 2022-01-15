@@ -6,6 +6,7 @@
         :width="productImageSize"
         :height="productImageSize"
         class="product-image"
+        data-test="productImage"
       />
     </div>
 
@@ -16,14 +17,19 @@
           :width="sellerImageSize"
           :height="sellerImageSize"
           class="seller-image"
+          data-test="sellerImage"
         />
       </div>
       <div class="seller-info">
-        <div class="seller-info-detail">{{ productInfo.sellerInfo.name }}</div>
+        <div
+          class="seller-info-detail"
+          data-test="sellerName"
+        >{{ productInfo.sellerInfo.name }}</div>
         <span
           v-for="(item, index) in productInfo.sellerInfo.tag"
           :key="index"
           class="seller-info-detail"
+          data-test="sellerTag"
         >
           <span v-if="index <= 1">
             # {{ item }}
@@ -31,7 +37,7 @@
         </span>
       </div>
       <div class="seller-info star-icon">
-        <fa icon="star" :style="{width: starSize, height: starSize}"/>
+        <!-- <fa icon="star" :style="{width: starSize, height: starSize}"/> -->
       </div>
     </div>
 
@@ -39,21 +45,29 @@
 
     <div class="detail-section">
       <div class="product-detail-section">
-        <div style="font-size: 24px; font-weight: bold">{{ productInfo.name }}</div>
+        <div
+          style="font-size: 24px; font-weight: bold"
+          data-test="productName"
+        >{{ productInfo.name }}</div>
         <div class="product-price-section">
           <div
             :v-if="productInfo.isOnSale"
             class="product-info"
             style="font-size: 18px; color: orangered"
+            data-test="productSalePercentage"
           >
             {{ productInfo.salePercentage }}%
           </div>
-          <div class="product-info">
+          <div
+            class="product-info"
+            data-test="productSalePrice"
+          >
             {{ salePrice.toLocaleString() }}원
           </div>
           <div
             :style="productInfo.isOnSale && { textDecoration: 'line-through', fontSize: '12px'}"
             class="product-info"
+            data-test="productOriginalPrice"
           >
             {{ Number(productInfo.price).toLocaleString() }}원
           </div>
@@ -61,7 +75,10 @@
       </div>
 
       <div class="detail-title">상품정보</div>
-      <div v-html="productInfo.description"></div>
+      <div
+        v-html="productInfo.description"
+        data-test="productDescription"
+      ></div>
     </div>
   </div>
 </template>
@@ -70,7 +87,19 @@
 export default {
   name: 'ProductInfoPage',
   props: {
-    productInfo: Object,
+    productInfo: {
+      image: String,
+      name: String,
+      price: Number,
+      isOnSale: Boolean,
+      salePercentage: Number,
+      description: String,
+      sellerInfo: {
+        image: String,
+        name: String,
+        tag: Array,
+      },
+    },
   },
   data() {
     return {
@@ -93,15 +122,12 @@ export default {
       }
     },
   },
-  computed: {
-
-  },
   created() {
     this.changeImageSize();
   },
   mounted() {
-    window.addEventListener('resize', this.changeImageSize);
     this.setSalePrice();
+    window.addEventListener('resize', this.changeImageSize);
   },
 };
 </script>

@@ -16,7 +16,14 @@ describe('ItemInfoPage', () => {
 
   test('buyButton contains price', () => {
     const price = wrapper.vm.productInfo.price;
-    expect(wrapper.find('button[data-test="buyProduct"]').text()).toContain(`${Number(price).toLocaleString()}`);
+    const percentage = wrapper.vm.productInfo.salePercentage;
+
+    if(wrapper.vm.productInfo.isOnSale) {
+      const salePrice = price * ((100 - percentage) / 100)
+      expect(wrapper.find('button[data-test="buyProduct"]').text()).toContain(`${Number(salePrice).toLocaleString()}`);
+    } else {
+      expect(wrapper.find('button[data-test="buyProduct"]').text()).toContain(`${Number(price).toLocaleString()}`);
+    }
   });
 
   test('check product data type', () => {
@@ -30,16 +37,18 @@ describe('ItemInfoPage', () => {
 
   test('check review data type', () => {
     const reviewInfo = wrapper.vm.reviewInfo;
-    expect(typeof reviewInfo).toBe('object'); //의문
+    expect(typeof reviewInfo).toBe('object');
     for(let i=0;i<reviewInfo.length;i++) {
       expect(typeof wrapper.vm.reviewInfo[i].nickname).toBe('string');
-      expect(typeof wrapper.vm.reviewInfo[i].review).toBe('string');
+      expect(typeof wrapper.vm.reviewInfo[i].date).toBe('string');
+      expect(typeof wrapper.vm.reviewInfo[i].title).toBe('string');
+      expect(typeof wrapper.vm.reviewInfo[i].detail).toBe('string');
       expect(typeof wrapper.vm.reviewInfo[i].image).toBe('string');
     }
   });
 
   test('check correct productInfo data are passed', () => {
-    expect(wrapper.findComponent(ProductInfoPage).props()).toEqual({ productInfo: wrapper.vm.productInfo});
+    expect(wrapper.findComponent(ProductInfoPage).props()).toEqual({productInfo: wrapper.vm.productInfo});
   });
 
   test('check correct reviewInfo data are passed', () => {

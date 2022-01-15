@@ -6,6 +6,7 @@
         v-for="(item, index) in reviewInfo"
         :key="index"
         style="text-align: left"
+        data-test="reviewInfo"
       >
         <div class="info-section">
           <div class="product-info">{{ setNicknamePrivate(item.nickname) }}</div>
@@ -13,7 +14,7 @@
         </div>
 
         <div
-          :style="{position: 'relative', height: `${reviewImageSize}px`}"
+          :style="item.image && {position: 'relative', height: `${reviewImageSize}px`}"
         >
           <div style="width: 70%; display: inline-block">
             <div style="font-size: 18px; font-weight: bold">{{ item.title }}</div>
