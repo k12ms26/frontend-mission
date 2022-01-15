@@ -19,7 +19,7 @@ describe('ItemInfoPage', () => {
     const percentage = wrapper.vm.productInfo.salePercentage;
 
     if(wrapper.vm.productInfo.isOnSale) {
-      const salePrice = price * ((100 - percentage) / 100)
+      const salePrice = price * ((100 - percentage) / 100);
       expect(wrapper.find('button[data-test="buyProduct"]').text()).toContain(`${Number(salePrice).toLocaleString()}`);
     } else {
       expect(wrapper.find('button[data-test="buyProduct"]').text()).toContain(`${Number(price).toLocaleString()}`);
