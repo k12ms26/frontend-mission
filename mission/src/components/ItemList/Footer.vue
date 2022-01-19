@@ -10,5 +10,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.item-list-footer {
+  position: fixed;
+  bottom: 0;
+  background-color: whitesmoke;
+  width: 100%;
+}
 </style>

@@ -8,12 +8,10 @@
       />
     </div>
 
-    <div class="info-section" :style="{height: productImageSize}">
-      <div class="seller-image">
+    <div class="info-section">
+      <div class="seller-img-section">
         <img
           :src="productInfo.sellerInfo.image"
-          :width="sellerImageSize"
-          :height="sellerImageSize"
           class="seller-image"
           data-test="sellerImage"
         />
@@ -102,18 +100,10 @@ export default {
   },
   data() {
     return {
-      productImageSize: 0,
-      sellerImageSize: 0,
-      starSize: 0,
       salePrice: 0,
     };
   },
   methods: {
-    changeImageSize() {
-      this.productImageSize = window.innerWidth - 20;
-      this.sellerImageSize = window.innerWidth / 6;
-      this.starSize = window.innerWidth / 15;
-    },
     setSalePrice() {
       if (this.productInfo.isOnSale) {
         const price = this.productInfo.price * ((100 - this.productInfo.salePercentage) / 100);
@@ -129,58 +119,54 @@ export default {
       return Number(this.productInfo.price).toLocaleString();
     },
   },
-  created() {
-    this.changeImageSize();
-  },
   mounted() {
     this.setSalePrice();
-    window.addEventListener('resize', this.changeImageSize);
   },
 };
 </script>
 
 <style scoped>
-.img-section {
-  width: 100%;
-  position: relative;
-}
-
-.img-section::after {
-  content: "";
-  display: block;
-  padding-bottom: 100%;
-}
-
-.product-image {
+.product-image, .seller-image {
   position: absolute;
   width: 100%;
   height: 100%;
 }
 
 .seller-image {
-    border-radius: 50px;
-    display: inline;
+  border-radius: 50%;
+}
+
+.seller-img-section {
+  width: 15%;
+  position: relative;
+  display: inline-block;
+}
+
+.seller-img-section::after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
 }
 
 .seller-info {
-    display: inline-block;
-    text-align: left;
-    width: 72%;
-    position: absolute;
-    margin: 10px 0 0 10px;
-    font-size: 12px;
+  display: inline-block;
+  text-align: left;
+  width: 62%;
+  position: absolute;
+  margin: 10px 0 0 10px;
+  font-size: 12px;
 }
 
 .star-icon {
-    text-align: right !important;
-    margin-top: 16px;
+  text-align: right !important;
+  margin-top: 16px;
 }
 
 .product-detail-section {
-    text-align: left;
+  text-align: left;
 }
 
 .product-price-section {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 </style>
