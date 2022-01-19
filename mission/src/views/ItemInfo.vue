@@ -9,7 +9,7 @@
 
     <div class='fixed-cart-button'>
       <button data-test='buyProduct' class="buy-button">
-        {{ productInfo.price ? Number(setPrice()).toLocaleString() : '0' }}원 구매
+        {{ displayPrice }}원 구매
       </button>
     </div>
   </div>
@@ -74,6 +74,11 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    displayPrice() {
+      return this.productInfo.price ? Number(this.setPrice()).toLocaleString() : '0';
+    },
   },
   methods: {
     setPrice() {

@@ -1,18 +1,18 @@
 import { mount } from '@vue/test-utils';
-import ItemInfoPage from '@/views/ItemInfo.vue';
 import ProductInfoPage from '@/components/ItemInfo/ProductInfo.vue';
 
 describe('ProductInfoPage', () => {
   const wrapper = mount(ProductInfoPage);
-  const itemInfoPageWrapper = mount(ItemInfoPage);
 
   test('renders product data', async () => {
+    const isOnSale = true;
+
     await wrapper.setProps({
       productInfo: {
         image: '',
         name: '편한 티셔츠',
         price: 198000,
-        isOnSale: true,
+        isOnSale: isOnSale,
         salePercentage: 25,
         description: `
           <div style="text-align: left">
@@ -30,7 +30,7 @@ describe('ProductInfoPage', () => {
     expect(wrapper.find('div[data-test="productOriginal"]').exists()).toBe(true);
     expect(wrapper.find('div[data-test="productDescription"]').exists()).toBe(true);
 
-    if(wrapper.vm.productInfo.isOnSale) {
+    if(isOnSale) {
       expect(wrapper.find('div[data-test="productSalePercentage"]').exists()).toBe(true);
       expect(wrapper.find('div[data-test="productSalePrice"]').exists()).toBe(true);
     }
@@ -55,9 +55,5 @@ describe('ProductInfoPage', () => {
     expect(wrapper.find('img[data-test="sellerImage"]').exists()).toBe(true);
     expect(wrapper.find('div[data-test="sellerName"]').exists()).toBe(true);
     expect(wrapper.find('span[data-test="sellerTag"]').exists()).toBe(true);
-  });
-
-  test('check correct prop data from ItemInfoPage', async () => {
-    expect(wrapper.vm.productInfo).toEqual(itemInfoPageWrapper.vm.productInfo);
   });
 })

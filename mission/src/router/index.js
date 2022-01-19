@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import ItemListPage from '@/views/ItemList.vue';
+import ItemListPage from '@/views/ItemInfo.vue';
 
 const routes = [
   {

@@ -15,43 +15,25 @@ describe('ItemInfoPage', () => {
   });
 
   test('buyButton contains price', () => {
-    const price = wrapper.vm.productInfo.price;
-    const percentage = wrapper.vm.productInfo.salePercentage;
+    const price = 10000, percentage = 25, isOnSale = true;
 
-    if(wrapper.vm.productInfo.isOnSale) {
+    const wrapper = mount(ItemInfoPage, {
+      data() {
+        return {
+          productInfo: {
+            price: price,
+            isOnSale: isOnSale,
+            salePercentage: percentage,
+          }
+        }
+      }
+    })
+
+    if(isOnSale) {
       const salePrice = price * ((100 - percentage) / 100);
       expect(wrapper.find('button[data-test="buyProduct"]').text()).toContain(`${Number(salePrice).toLocaleString()}`);
     } else {
       expect(wrapper.find('button[data-test="buyProduct"]').text()).toContain(`${Number(price).toLocaleString()}`);
-    }
-  });
-
-  test('check product data type', () => {
-    const productInfo = wrapper.vm.productInfo;
-    expect(typeof productInfo).toBe('object');
-    expect(typeof productInfo.image).toBe('string');
-    expect(typeof productInfo.name).toBe('string');
-    expect(typeof productInfo.isOnSale).toBe('boolean');
-    expect(typeof productInfo.description).toBe('string');
-  });
-
-  test('check seller data type', () => {
-    const sellerInfo = wrapper.vm.productInfo.sellerInfo;
-    expect(typeof sellerInfo).toBe('object');
-    expect(typeof sellerInfo.image).toBe('string');
-    expect(typeof sellerInfo.name).toBe('string');
-    expect(typeof sellerInfo.tag).toBe('object');
-  });
-
-  test('check review data type', () => {
-    const reviewInfo = wrapper.vm.reviewInfo;
-    expect(typeof reviewInfo).toBe('object');
-    for(let i=0;i<reviewInfo.length;i++) {
-      expect(typeof wrapper.vm.reviewInfo[i].nickname).toBe('string');
-      expect(typeof wrapper.vm.reviewInfo[i].date).toBe('string');
-      expect(typeof wrapper.vm.reviewInfo[i].title).toBe('string');
-      expect(typeof wrapper.vm.reviewInfo[i].detail).toBe('string');
-      expect(typeof wrapper.vm.reviewInfo[i].image).toBe('string');
     }
   });
 

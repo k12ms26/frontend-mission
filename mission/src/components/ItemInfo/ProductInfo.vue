@@ -1,10 +1,8 @@
 <template>
   <div id="product-info-page">
-    <div class="info-section">
+    <div class="info-section img-section">
       <img
         :src="productInfo.image"
-        :width="productImageSize"
-        :height="productImageSize"
         class="product-image"
         data-test="productImage"
       />
@@ -31,7 +29,7 @@
           class="seller-info-detail"
           data-test="sellerTag"
         >
-          <span v-if="index <= 1">
+          <span>
             # {{ item }}
           </span>
         </span>
@@ -63,14 +61,14 @@
             class="product-info"
             data-test="productSalePrice"
           >
-            {{ salePrice.toLocaleString() }}원
+            {{ displaySalePrice }}원
           </div>
           <div
             :style="productInfo.isOnSale && { textDecoration: 'line-through', fontSize: '12px'}"
             class="product-info"
             data-test="productOriginalPrice"
           >
-            {{ Number(productInfo.price).toLocaleString() }}원
+            {{ displayOriginalPrice }}원
           </div>
         </div>
       </div>
@@ -123,6 +121,14 @@ export default {
       }
     },
   },
+  computed: {
+    displaySalePrice() {
+      return this.salePrice.toLocaleString();
+    },
+    displayOriginalPrice() {
+      return Number(this.productInfo.price).toLocaleString();
+    },
+  },
   created() {
     this.changeImageSize();
   },
@@ -132,3 +138,49 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.img-section {
+  width: 100%;
+  position: relative;
+}
+
+.img-section::after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.product-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.seller-image {
+    border-radius: 50px;
+    display: inline;
+}
+
+.seller-info {
+    display: inline-block;
+    text-align: left;
+    width: 72%;
+    position: absolute;
+    margin: 10px 0 0 10px;
+    font-size: 12px;
+}
+
+.star-icon {
+    text-align: right !important;
+    margin-top: 16px;
+}
+
+.product-detail-section {
+    text-align: left;
+}
+
+.product-price-section {
+    margin-top: 5px;
+}
+</style>
