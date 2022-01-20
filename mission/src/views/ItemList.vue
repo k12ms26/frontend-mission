@@ -251,7 +251,7 @@ export default {
 
 .product-list-sale-percentage {
   display: inline-block;
-  color: orangered;
+  color: indianred;
   font-weight: bold;
   font-size: 95%;
 }
