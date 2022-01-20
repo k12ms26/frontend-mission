@@ -52,7 +52,7 @@
           <div
             :v-if="productInfo.isOnSale"
             class="product-info"
-            style="font-size: 18px; color: orangered"
+            style="font-size: 18px; color: indianred"
             data-test="productSalePercentage"
           >
             {{ productInfo.salePercentage }}%
