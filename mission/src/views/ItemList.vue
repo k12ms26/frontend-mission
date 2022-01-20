@@ -196,6 +196,10 @@ export default {
 </script>
 
 <style scoped>
+#item-list-page {
+  margin-bottom: 100px;
+}
+
 .product-list {
   display: inline-block;
   box-sizing: border-box;

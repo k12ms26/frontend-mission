@@ -32,8 +32,11 @@
           </span>
         </span>
       </div>
-      <div class="seller-info star-icon">
-        <!-- <fa icon="star" :style="{width: starSize, height: starSize}"/> -->
+      <div class="seller-img-section star-section">
+        <font-awesome-icon
+          icon="star"
+          class="star-icon"
+        />
       </div>
     </div>
 
@@ -126,7 +129,7 @@ export default {
 </script>
 
 <style scoped>
-.product-image, .seller-image {
+.product-image, .seller-image, .star-icon {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -148,6 +151,13 @@ export default {
   padding-bottom: 100%;
 }
 
+.star-section {
+  width: 8%;
+  float: right;
+  margin: 4% 4% 0;
+  color: gold;
+}
+
 .seller-info {
   display: inline-block;
   text-align: left;
@@ -155,11 +165,6 @@ export default {
   position: absolute;
   margin: 10px 0 0 10px;
   font-size: 12px;
-}
-
-.star-icon {
-  text-align: right !important;
-  margin-top: 16px;
 }
 
 .product-detail-section {

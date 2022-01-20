@@ -10,5 +10,5 @@ describe('HeaderItem', () => {
 
   test('renders Header Title', () => {
     expect(wrapper.find('[data-test="headerTitle"]').text()).toEqual('MS MALL');
-  })
+  });
 });
