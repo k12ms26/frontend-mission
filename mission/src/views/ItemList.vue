@@ -1,57 +1,65 @@
 <template>
-  <div id="item-list-page">
+  <div
+    id="item-list-page"
+    ref="itemListPage"
+  >
     <Header />
 
     <div
-      v-for="(item, index) in productList"
-      :key="index"
-      class="product-list"
-      :style="oddStyle(index)"
+      class="item-list-body"
     >
-      <div class="section">
-        <img
-          :src="item.image"
-          class="product-list-image"
-          data-test="productListImage"
-        />
-      </div>
-
       <div
-        class="info-section"
+        v-for="(item, index) in productList"
+        :key="index"
+        class="product-list"
+        :style="oddStyle(index)"
       >
-        <div>
-          <div
-            v-if="isSale(item.isOnSale)"
-            class="sale-per-section"
-          >
+        <div class="section">
+          <img
+            :src="item.image"
+            class="product-list-image"
+            data-test="productListImage"
+          />
+        </div>
+
+        <div
+          class="info-section"
+        >
+          <div>
             <div
-              class="product-list-sale-percentage"
-              data-test="productSalePer"
-            >{{ item.salePercentage }} %</div>
+              v-if="isSale(item.isOnSale)"
+              class="sale-per-section"
+            >
+              <div
+                class="product-list-sale-percentage"
+                data-test="productSalePer"
+              >{{ item.salePercentage }} %</div>
+            </div>
+            <div
+              class="price-section"
+            >
+              <div
+                class="product-list-price"
+                data-test="productPrice"
+              >{{ displayPrice(item.price, item.isOnSale, item.salePercentage) }} 원</div>
+            </div>
           </div>
           <div
-            class="price-section"
+            class="product-list-name"
+            data-test="productListName"
           >
-            <div
-              class="product-list-price"
-              data-test="productPrice"
-            >{{ displayPrice(item.price, item.isOnSale, item.salePercentage) }} 원</div>
+            {{ productName(item.name, index) }}
           </div>
-        </div>
-        <div
-          class="product-list-name"
-          data-test="productListName"
-        >
-          {{ productName(item.name, index) }}
-        </div>
-        <div
-          class="product-list-description"
-          data-test="productDesc"
-        >
-          {{ item.description }}
+          <div
+            class="product-list-description"
+            data-test="productDesc"
+          >
+            {{ item.description }}
+          </div>
         </div>
       </div>
     </div>
+
     <div style="clear: both;"></div>
 
     <Footer />
@@ -198,6 +206,10 @@ export default {
 <style scoped>
 #item-list-page {
   margin-bottom: 100px;
+}
+
+.item-list-body {
+  margin-top: 60px;
 }
 
 .product-list {
