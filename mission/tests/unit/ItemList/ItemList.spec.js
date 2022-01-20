@@ -35,5 +35,5 @@ describe('ItemListPage', () => {
     expect(wrapper.find('[data-test="productSalePer"]').text()).toContain(salePercentage);
     expect(wrapper.find('[data-test="productPrice"]').text()).toContain(salePrice.toLocaleString());
     expect(wrapper.find('[data-test="productDesc"]').text()).toBe(description);
-  })
+  });
 });

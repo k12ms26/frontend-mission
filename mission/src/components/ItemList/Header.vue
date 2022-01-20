@@ -1,6 +1,6 @@
 <template>
   <div
-    id="item-list-header"
+    class="item-list-header"
     ref="itemListHeader"
   >
     <div
@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style scoped>
-#item-list-header {
+.item-list-header {
   position: fixed;
   top: 0;
   width: 100%;
