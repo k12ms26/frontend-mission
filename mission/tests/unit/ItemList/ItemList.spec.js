@@ -3,9 +3,9 @@ import ItemInfoPage from '@/views/ItemList.vue';
 import image from '@/assets/tshirts.jpg';
 
 describe('ItemListPage', () => {
-  test('renders ItemListPage', () => {
-    const wrapper = mount(ItemInfoPage);
+  const wrapper = mount(ItemInfoPage);
 
+  test('renders ItemListPage', () => {
     expect(wrapper.find('#item-list-page').exists()).toBe(true);
   });
 

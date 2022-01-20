@@ -3,6 +3,7 @@ import Footer from '@/components/ItemList/Footer.vue';
 
 describe('FooterItem', () => {
   const wrapper = mount(Footer);
+
   test('renders Footer', () => {
     expect(wrapper.find('.item-list-footer').exists()).toBe(true);
   });
