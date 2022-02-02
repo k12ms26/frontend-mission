@@ -1,21 +1,17 @@
 <template>
   <div id="product-info-page">
-    <div class="info-section">
+    <div class="info-section img-section">
       <img
         :src="productInfo.image"
-        :width="productImageSize"
-        :height="productImageSize"
         class="product-image"
         data-test="productImage"
       />
     </div>
 
-    <div class="info-section" :style="{height: productImageSize}">
-      <div class="seller-image">
+    <div class="info-section">
+      <div class="seller-img-section">
         <img
           :src="productInfo.sellerInfo.image"
-          :width="sellerImageSize"
-          :height="sellerImageSize"
           class="seller-image"
           data-test="sellerImage"
         />
@@ -31,13 +27,16 @@
           class="seller-info-detail"
           data-test="sellerTag"
         >
-          <span v-if="index <= 1">
+          <span>
             # {{ item }}
           </span>
         </span>
       </div>
-      <div class="seller-info star-icon">
-        <!-- <fa icon="star" :style="{width: starSize, height: starSize}"/> -->
+      <div class="seller-img-section star-section">
+        <font-awesome-icon
+          icon="star"
+          class="star-icon"
+        />
       </div>
     </div>
 
@@ -53,7 +52,7 @@
           <div
             :v-if="productInfo.isOnSale"
             class="product-info"
-            style="font-size: 18px; color: orangered"
+            style="font-size: 18px; color: indianred"
             data-test="productSalePercentage"
           >
             {{ productInfo.salePercentage }}%
@@ -63,14 +62,14 @@
             class="product-info"
             data-test="productSalePrice"
           >
-            {{ salePrice.toLocaleString() }}원
+            {{ displaySalePrice }}원
           </div>
           <div
             :style="productInfo.isOnSale && { textDecoration: 'line-through', fontSize: '12px'}"
             class="product-info"
             data-test="productOriginalPrice"
           >
-            {{ Number(productInfo.price).toLocaleString() }}원
+            {{ displayOriginalPrice }}원
           </div>
         </div>
       </div>
@@ -104,18 +103,10 @@ export default {
   },
   data() {
     return {
-      productImageSize: 0,
-      sellerImageSize: 0,
-      starSize: 0,
       salePrice: 0,
     };
   },
   methods: {
-    changeImageSize() {
-      this.productImageSize = window.innerWidth - 20;
-      this.sellerImageSize = window.innerWidth / 6;
-      this.starSize = window.innerWidth / 15;
-    },
     setSalePrice() {
       if (this.productInfo.isOnSale) {
         const price = this.productInfo.price * ((100 - this.productInfo.salePercentage) / 100);
@@ -123,12 +114,64 @@ export default {
       }
     },
   },
-  created() {
-    this.changeImageSize();
+  computed: {
+    displaySalePrice() {
+      return this.salePrice.toLocaleString();
+    },
+    displayOriginalPrice() {
+      return Number(this.productInfo.price).toLocaleString();
+    },
   },
   mounted() {
     this.setSalePrice();
-    window.addEventListener('resize', this.changeImageSize);
   },
 };
 </script>
+
+<style scoped>
+.product-image, .seller-image, .star-icon {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.seller-image {
+  border-radius: 50%;
+}
+
+.seller-img-section {
+  width: 15%;
+  position: relative;
+  display: inline-block;
+}
+
+.seller-img-section::after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.star-section {
+  width: 8%;
+  float: right;
+  margin: 4% 4% 0;
+  color: gold;
+}
+
+.seller-info {
+  display: inline-block;
+  text-align: left;
+  width: 62%;
+  position: absolute;
+  margin: 10px 0 0 10px;
+  font-size: 12px;
+}
+
+.product-detail-section {
+  text-align: left;
+}
+
+.product-price-section {
+  margin-top: 5px;
+}
+</style>
