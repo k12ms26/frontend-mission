@@ -25,7 +25,7 @@ export default {
           this.$refs.itemListHeader.style.top = "0";
           // document.getElementById("item-list-header").style.top = "0";
         } else {
-          this.$refs.itemListHeader.style.top = "-60px";
+          this.$refs.itemListHeader.style.top = "-20%";
           // document.getElementById("item-list-header").style.top = "-60px";
         }
       };
