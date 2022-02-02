@@ -8,6 +8,7 @@
         class="product-list"
         :style="oddStyle(index)"
         @click="goToDetail(item)"
+        data-test="productList"
       >
         <div class="section">
           <img
@@ -65,7 +66,7 @@ export default {
   methods: {
     async goToDetail(item) {
       const productNo = item.product_no;
-      this.$emit('goToDetail', productNo);
+      this.$router.push(`/items/${productNo}`);
     },
     oddStyle(idx) {
       if (idx === this.products.length - 1 && idx % 2 === 0) {

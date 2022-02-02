@@ -9,8 +9,8 @@ describe('ReviewInfoPage', () => {
       content = "핏이 아주 잘 맞습니다. 대만족!", likes_count = 7, created = "2021. 12. 04",
       img = "https://projectlion-vue.s3.ap-northeast-2.amazonaws.com/items/example.jpg";
 
-      await wrapper.setProps({
-      reviewInfo: [
+    await wrapper.setProps({
+      reviewDetail: [
         {
           review_no: review_no,
           writer: writer,

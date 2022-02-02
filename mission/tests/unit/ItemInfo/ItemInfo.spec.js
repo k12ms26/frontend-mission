@@ -13,25 +13,23 @@ describe('ItemInfoPage', () => {
   });
 
   test('buyButton contains price', () => {
-    const price = 10000, percentage = 25, isOnSale = true;
+    const price = 10000, originalPrice = 20000;
 
     const wrapper = mount(ItemInfoPage, {
       data() {
         return {
           productInfo: {
             price: price,
-            isOnSale: isOnSale,
-            salePercentage: percentage,
+            original_price: originalPrice,
           }
         }
       }
     })
 
-    if(isOnSale) {
-      const salePrice = price * ((100 - percentage) / 100);
-      expect(wrapper.find('button[data-test="buyProduct"]').text()).toContain(`${Number(salePrice).toLocaleString()}`);
-    } else {
+    if(price !== originalPrice) {
       expect(wrapper.find('button[data-test="buyProduct"]').text()).toContain(`${Number(price).toLocaleString()}`);
+    } else {
+      expect(wrapper.find('button[data-test="buyProduct"]').text()).toContain(`${Number(originalPrice).toLocaleString()}`);
     }
   });
 });

@@ -7,7 +7,6 @@
 
     <ItemList
       :productList="productList"
-      @goToDetail="goToDetail"
     />
     <div style="clear: both;"></div>
 
@@ -56,9 +55,6 @@ export default {
           // document.getElementById("item-list-header").style.top = "-60px";
         }
       };
-    },
-    goToDetail(productNo) {
-      this.$router.push(`/items/${productNo}`);
     },
   },
 };
