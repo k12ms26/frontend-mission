@@ -39,10 +39,8 @@ export default {
   },
   computed: {
     displayPrice() {
-      // let disPrice = this.originalPrice;
-      // if (this.price) disPrice = this.price;
-      // return disPrice.toLocaleString();
-      return '-';
+      if (this.productInfo.price) return Number(this.productInfo.price).toLocaleString();
+      return Number(this.productInfo.original_price).toLocaleString();
     },
   },
   methods: {
