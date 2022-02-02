@@ -76,7 +76,7 @@ export default {
       const salePrice = item.price;
       const originalPrice = item.original_price;
 
-      if (this.isSale(salePrice)) return Math.floor((originalPrice / salePrice) * 10);
+      if (this.isSale(salePrice)) return Math.floor((1 - (salePrice / originalPrice)) * 100);
       return '';
     },
     displayPrice(item) {
