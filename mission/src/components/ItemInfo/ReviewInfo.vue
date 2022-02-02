@@ -9,16 +9,35 @@
         data-test="reviewInfo"
       >
         <div class="info-section">
-          <div class="product-info">{{ item.writer }}</div>
-          <div class="product-info">{{ item.created }}</div>
+          <div
+            class="product-info"
+            data-test="reviewWriter"
+          >
+            {{ item.writer }}
+          </div>
+          <div
+            class="product-info"
+            data-test="reviewDate"
+          >
+            {{ item.created }}
+          </div>
         </div>
 
         <div
           :style="item.img && {position: 'relative', height: `${reviewImageSize}px`}"
         >
           <div style="width: 70%; display: inline-block">
-            <div style="font-size: 18px; font-weight: bold">{{ item.title }}</div>
-            <div>{{ item.content }}</div>
+            <div
+              style="font-size: 18px; font-weight: bold"
+              data-test="reviewTitle"
+            >
+              {{ item.title }}
+            </div>
+            <div
+              data-test="reviewContent"
+            >
+              {{ item.content }}
+            </div>
           </div>
           <img
             v-if="item.img"
@@ -26,6 +45,7 @@
             :width="reviewImageSize"
             :height="reviewImageSize"
             class="review-image"
+            data-test="reviewImage"
           />
         </div>
 
