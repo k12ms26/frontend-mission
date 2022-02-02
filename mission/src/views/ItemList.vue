@@ -1,9 +1,13 @@
 <template>
   <div id="item-list-page" ref="itemListPage">
-    <Header />
+    <Header
+      ref="header"
+      @scrollHandler="scrollHandler"
+    />
 
     <ItemList
       :productList="productList"
+      @goToDetail="goToDetail"
     />
     <div style="clear: both;"></div>
 
@@ -39,6 +43,22 @@ export default {
     async getItems() {
       const { data } = await GetRepository.getItemList();
       this.productList = data;
+    },
+    scrollHandler() {
+      window.onscroll = () => {
+        const currentScrollPos = window.pageYOffset;
+        const el = this.$refs.header.$refs.itemListHeader;
+        if (currentScrollPos === 0) {
+          el.style.top = "0";
+          // document.getElementById("item-list-header").style.top = "0";
+        } else {
+          el.style.top = "-20%";
+          // document.getElementById("item-list-header").style.top = "-60px";
+        }
+      };
+    },
+    goToDetail(productNo) {
+      this.$router.push(`/items/${productNo}`);
     },
   },
 };

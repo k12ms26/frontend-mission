@@ -19,20 +19,11 @@ export default {
   name: 'Header',
   methods: {
     scrollHandler() {
-      window.onscroll = () => {
-        const currentScrollPos = window.pageYOffset;
-        if (currentScrollPos === 0) {
-          this.$refs.itemListHeader.style.top = "0";
-          // document.getElementById("item-list-header").style.top = "0";
-        } else {
-          this.$refs.itemListHeader.style.top = "-20%";
-          // document.getElementById("item-list-header").style.top = "-60px";
-        }
-      };
+      this.$emit('scrollHandler', this.$refs.itemListHeader);
     },
   },
   mounted() {
-    this.scrollHandler();
+    window.addEventListener('scroll', this.scrollHandler());
   },
 };
 </script>

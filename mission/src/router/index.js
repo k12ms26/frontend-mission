@@ -1,25 +1,27 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import ItemListPage from '@/views/ItemList.vue';
+import ItemInfoPage from '@/views/ItemInfo.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'ItemListPage',
     component: ItemListPage,
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    path: '/items/:productNo',
+    name: 'ItemInfoPage',
+    component: ItemInfoPage,
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.afterEach((to, from) => {
+  if (to.name === 'ItemInfoPage' && from.name === 'ItemListPage') router.go();
 });
 
 export default router;

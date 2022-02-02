@@ -7,6 +7,7 @@
         :key="index"
         class="product-list"
         :style="oddStyle(index)"
+        @click="goToDetail(item)"
       >
         <div class="section">
           <img
@@ -62,6 +63,10 @@ export default {
     productList: Object,
   },
   methods: {
+    async goToDetail(item) {
+      const productNo = item.product_no;
+      this.$emit('goToDetail', productNo);
+    },
     oddStyle(idx) {
       if (idx === this.products.length - 1 && idx % 2 === 0) {
         return 'float: left';
@@ -91,7 +96,6 @@ export default {
   },
   computed: {
     products() {
-      console.log(this.productList.items);
       return this.productList.items;
     },
   },
