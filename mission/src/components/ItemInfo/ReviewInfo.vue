@@ -9,20 +9,20 @@
         data-test="reviewInfo"
       >
         <div class="info-section">
-          <div class="product-info">{{ setNicknamePrivate(item.nickname) }}</div>
-          <div class="product-info">{{ item.date }}</div>
+          <div class="product-info">{{ item.writer }}</div>
+          <div class="product-info">{{ item.created }}</div>
         </div>
 
         <div
-          :style="item.image && {position: 'relative', height: `${reviewImageSize}px`}"
+          :style="item.img && {position: 'relative', height: `${reviewImageSize}px`}"
         >
           <div style="width: 70%; display: inline-block">
             <div style="font-size: 18px; font-weight: bold">{{ item.title }}</div>
-            <div>{{ item.detail }}</div>
+            <div>{{ item.content }}</div>
           </div>
           <img
-            v-if="item.image"
-            :src="item.image"
+            v-if="item.img"
+            :src="item.img"
             :width="reviewImageSize"
             :height="reviewImageSize"
             class="review-image"
@@ -39,7 +39,7 @@
 export default {
   name: 'ReviewInfoPage',
   props: {
-    reviewInfo: Object,
+    productDetail: Object,
   },
   data() {
     return {
@@ -50,12 +50,11 @@ export default {
     changeImageSize() {
       this.reviewImageSize = window.innerWidth / 4;
     },
-    setNicknamePrivate(nickname) {
-      return nickname.substring(0, 2) + '*'.repeat(nickname.length - 2);
-    },
   },
   computed: {
-
+    reviewInfo() {
+      return this.productDetail.item.reviews;
+    },
   },
   created() {
     this.changeImageSize();
