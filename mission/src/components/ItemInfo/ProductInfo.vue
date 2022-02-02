@@ -93,9 +93,10 @@ export default {
   methods: {
     isOnSale() {
       const salePrice = this.productInfo.price;
+      const originalPrice = this.productInfo.original_price;
       let isOnSale = false;
 
-      if (salePrice) isOnSale = true;
+      if (salePrice !== originalPrice) isOnSale = true;
       return isOnSale;
     },
   },
@@ -110,7 +111,7 @@ export default {
       const salePrice = this.productInfo.price;
       const originalPrice = this.productInfo.original_price;
 
-      if (salePrice) return Math.floor((1 - (salePrice / originalPrice)) * 100);
+      if (salePrice !== originalPrice) return Math.floor((1 - (salePrice / originalPrice)) * 100);
       return '';
     },
     displaySalePrice() {

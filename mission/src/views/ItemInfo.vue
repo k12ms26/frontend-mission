@@ -39,7 +39,9 @@ export default {
   },
   computed: {
     displayPrice() {
-      if (this.productInfo.price) return Number(this.productInfo.price).toLocaleString();
+      if (this.productInfo.price !== this.productInfo.original_price) {
+        return Number(this.productInfo.price).toLocaleString();
+      }
       return Number(this.productInfo.original_price).toLocaleString();
     },
   },
