@@ -39,7 +39,7 @@
 export default {
   name: 'ReviewInfoPage',
   props: {
-    productDetail: Object,
+    reviewDetail: Object,
   },
   data() {
     return {
@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     reviewInfo() {
-      return this.productDetail.item.reviews;
+      return this.reviewDetail;
     },
   },
   created() {

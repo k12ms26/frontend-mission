@@ -1,7 +1,5 @@
 import { mount } from '@vue/test-utils';
 import ItemInfoPage from '@/views/ItemInfo.vue';
-import ProductInfoPage from '@/components/ItemInfo/ProductInfo.vue';
-import ReviewInfoPage from '@/components/ItemInfo/ReviewInfo.vue';
 
 describe('ItemInfoPage', () => {
   const wrapper = mount(ItemInfoPage);
@@ -35,13 +33,5 @@ describe('ItemInfoPage', () => {
     } else {
       expect(wrapper.find('button[data-test="buyProduct"]').text()).toContain(`${Number(price).toLocaleString()}`);
     }
-  });
-
-  test('check correct productInfo data are passed', () => {
-    expect(wrapper.findComponent(ProductInfoPage).props()).toEqual({productInfo: wrapper.vm.productInfo});
-  });
-
-  test('check correct reviewInfo data are passed', () => {
-    expect(wrapper.findComponent(ReviewInfoPage).props()).toEqual({ reviewInfo: wrapper.vm.reviewInfo});
   });
 });

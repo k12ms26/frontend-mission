@@ -42,7 +42,7 @@ export default {
   methods: {
     async getItems() {
       const { data } = await GetRepository.getItemList();
-      this.productList = data;
+      this.productList = data.items;
     },
     scrollHandler() {
       window.onscroll = () => {

@@ -11,7 +11,7 @@
     <div class="info-section">
       <div class="seller-img-section">
         <img
-          :src="productInfo.seller.profile_image"
+          :src="sellerInfo.profile_image"
           class="seller-image"
           data-test="sellerImage"
         />
@@ -20,9 +20,9 @@
         <div
           class="seller-info-detail"
           data-test="sellerName"
-        >{{ productInfo.seller.name }}</div>
+        >{{ sellerInfo.name }}</div>
         <span
-          v-for="(item, index) in productInfo.seller.hash_tags"
+          v-for="(item, index) in sellerInfo.hash_tags"
           :key="index"
           class="seller-info-detail"
           data-test="sellerTag"
@@ -88,6 +88,7 @@ export default {
   name: 'ProductInfoPage',
   props: {
     productDetail: Object,
+    sellerDetail: Object,
   },
   methods: {
     isOnSale() {
@@ -100,7 +101,10 @@ export default {
   },
   computed: {
     productInfo() {
-      return this.productDetail.item;
+      return this.productDetail;
+    },
+    sellerInfo() {
+      return this.sellerDetail;
     },
     displaySalePercentage() {
       const salePrice = this.productInfo.price;
@@ -110,10 +114,10 @@ export default {
       return '';
     },
     displaySalePrice() {
-      return this.productInfo.price.toLocaleString();
+      return Number(this.productInfo.price).toLocaleString();
     },
     displayOriginalPrice() {
-      return this.productInfo.original_price.toLocaleString();
+      return Number(this.productInfo.original_price).toLocaleString();
     },
   },
 };

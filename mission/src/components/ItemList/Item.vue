@@ -96,7 +96,7 @@ export default {
   },
   computed: {
     products() {
-      return this.productList.items;
+      return this.productList;
     },
   },
 };

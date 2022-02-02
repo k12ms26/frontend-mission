@@ -2,9 +2,10 @@
   <div id='item-info-page'>
     <ProductInfoPage
       :productDetail="productInfo"
+      :sellerDetail="sellerInfo"
     />
     <ReviewInfoPage
-      :productDetail="productInfo"
+      :reviewDetail="reviewInfo"
     />
 
     <div class='fixed-cart-button'>
@@ -32,24 +33,25 @@ export default {
   data() {
     return {
       productInfo: [],
-      price: 0,
-      originalPrice: 0,
+      sellerInfo: [],
+      reviewInfo: [],
     };
   },
   computed: {
     displayPrice() {
-      let disPrice = this.originalPrice;
-      if (this.price) disPrice = this.price;
-      return disPrice.toLocaleString();
+      // let disPrice = this.originalPrice;
+      // if (this.price) disPrice = this.price;
+      // return disPrice.toLocaleString();
+      return '-';
     },
   },
   methods: {
     async getItemDetail() {
       const { productNo } = this.$route.params;
       const { data } = await GetRepository.getItemDetail(productNo);
-      this.productInfo = data;
-      this.price = this.productInfo.item.price;
-      this.originalPrice = this.productInfo.item.originalPrice;
+      this.productInfo = data.item;
+      this.sellerInfo = data.item.seller;
+      this.reviewInfo = data.item.reviews;
     },
   },
   created() {

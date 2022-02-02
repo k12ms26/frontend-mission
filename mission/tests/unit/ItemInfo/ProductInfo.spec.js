@@ -8,7 +8,7 @@ describe('ProductInfoPage', () => {
     const isOnSale = true;
 
     await wrapper.setProps({
-      productInfo: {
+      productDetail: {
         image: '',
         name: '편한 티셔츠',
         price: 198000,
@@ -39,7 +39,7 @@ describe('ProductInfoPage', () => {
   test('renders seller data', async () => {
     await wrapper.setProps({
       productInfo: {
-        sellerInfo: {
+        seller: {
           image: '',
           name: '김민선',
           tag: [
