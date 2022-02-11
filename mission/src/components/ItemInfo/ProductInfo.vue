@@ -11,7 +11,7 @@
     <div class="info-section">
       <div class="seller-img-section">
         <img
-          :src="productInfo.sellerInfo.image"
+          :src="sellerInfo.profile_image"
           class="seller-image"
           data-test="sellerImage"
         />
@@ -20,9 +20,9 @@
         <div
           class="seller-info-detail"
           data-test="sellerName"
-        >{{ productInfo.sellerInfo.name }}</div>
+        >{{ sellerInfo.name }}</div>
         <span
-          v-for="(item, index) in productInfo.sellerInfo.tag"
+          v-for="(item, index) in sellerInfo.hash_tags"
           :key="index"
           class="seller-info-detail"
           data-test="sellerTag"
@@ -50,22 +50,22 @@
         >{{ productInfo.name }}</div>
         <div class="product-price-section">
           <div
-            :v-if="productInfo.isOnSale"
+            :v-if="isOnSale()"
             class="product-info"
             style="font-size: 18px; color: indianred"
             data-test="productSalePercentage"
           >
-            {{ productInfo.salePercentage }}%
+            {{ displaySalePercentage }}%
           </div>
           <div
-            :v-if="productInfo.isOnSale"
+            :v-if="isOnSale()"
             class="product-info"
             data-test="productSalePrice"
           >
             {{ displaySalePrice }}원
           </div>
           <div
-            :style="productInfo.isOnSale && { textDecoration: 'line-through', fontSize: '12px'}"
+            :style="isOnSale() && { textDecoration: 'line-through', fontSize: '12px'}"
             class="product-info"
             data-test="productOriginalPrice"
           >
@@ -87,43 +87,39 @@
 export default {
   name: 'ProductInfoPage',
   props: {
-    productInfo: {
-      image: String,
-      name: String,
-      price: Number,
-      isOnSale: Boolean,
-      salePercentage: Number,
-      description: String,
-      sellerInfo: {
-        image: String,
-        name: String,
-        tag: Array,
-      },
-    },
-  },
-  data() {
-    return {
-      salePrice: 0,
-    };
+    productDetail: Object,
+    sellerDetail: Object,
   },
   methods: {
-    setSalePrice() {
-      if (this.productInfo.isOnSale) {
-        const price = this.productInfo.price * ((100 - this.productInfo.salePercentage) / 100);
-        this.salePrice = Math.floor(price);
-      }
+    isOnSale() {
+      const salePrice = this.productInfo.price;
+      const originalPrice = this.productInfo.original_price;
+      let isOnSale = false;
+
+      if (salePrice !== originalPrice) isOnSale = true;
+      return isOnSale;
     },
   },
   computed: {
-    displaySalePrice() {
-      return this.salePrice.toLocaleString();
+    productInfo() {
+      return this.productDetail;
     },
-    displayOriginalPrice() {
+    sellerInfo() {
+      return this.sellerDetail;
+    },
+    displaySalePercentage() {
+      const salePrice = this.productInfo.price;
+      const originalPrice = this.productInfo.original_price;
+
+      if (salePrice !== originalPrice) return Math.floor((1 - (salePrice / originalPrice)) * 100);
+      return '';
+    },
+    displaySalePrice() {
       return Number(this.productInfo.price).toLocaleString();
     },
-  },
-  mounted() {
-    this.setSalePrice();
+    displayOriginalPrice() {
+      return Number(this.productInfo.original_price).toLocaleString();
+    },
   },
 };
 </script>
