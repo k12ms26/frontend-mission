@@ -40,7 +40,7 @@
             </div>
           </div>
           <img
-            v-if="item.img"
+            v-if="isImgExists(item.img)"
             :src="item.img"
             :width="reviewImageSize"
             :height="reviewImageSize"
@@ -67,6 +67,10 @@ export default {
     };
   },
   methods: {
+    isImgExists(img) {
+      if (img === '') return false;
+      return true;
+    },
     changeImageSize() {
       this.reviewImageSize = window.innerWidth / 4;
     },

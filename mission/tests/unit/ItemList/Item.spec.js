@@ -6,7 +6,25 @@ describe('ItemList', () => {
     image = "https://projectlion-vue.s3.ap-northeast-2.amazonaws.com/items/suit-1.png",
     price = 198000, original_price = 298000, description = "아주 잘 맞는 수트";
 
+  const mockRoute = {
+    params: {
+      productNo: 'asdf1234'
+    }
+  }
+  const mockRouter = {
+    push: jest.fn()
+  }
+
   const wrapper = mount(ItemList, {
+    props: {
+      isAuthenticated: true
+    },
+    global: {
+      mocks: {
+        $route: mockRoute,
+        $router: mockRouter
+      }
+    },
     data() {
       return {
         productList: [
@@ -23,13 +41,6 @@ describe('ItemList', () => {
     }
   });
 
-  jest.mock('vue-router', () => ({
-    useRoute: jest.fn(),
-    useRouter: jest.fn(() => ({
-      push: () => {}
-    }))
-  }));
-
   test('renders ItemList', () => {
     expect(wrapper.find('.item-list-body').exists()).toBe(true);
   });
@@ -38,7 +49,10 @@ describe('ItemList', () => {
     expect(wrapper.find('[data-test="productListName"]').text()).toContain(name);
     expect(wrapper.find('img[data-test="productListImage"').attributes('src')).toBe(image);
     expect(wrapper.find('[data-test="productDesc"]').text()).toBe(description);
+  });
 
+  //다시
+  test('renders sale price', async () => {
     if(price !== original_price) {
       const salePercentage = Math.floor((1 - (price / original_price)) * 100);;
       expect(wrapper.find('[data-test="productSalePer"]').text()).toContain(salePercentage);
@@ -49,10 +63,8 @@ describe('ItemList', () => {
   });
 
   test("redirect to ItemInfoPage", async () => {
-    const push = jest.fn();
-
     await wrapper.find('[data-test="productList"]').trigger('click');
-    expect(push).toHaveBeenCalledTimes(1);
-    expect(push).toHaveBeenCalledWith(`/items/${product_no}`);
+    expect(mockRouter.push).toHaveBeenCalledTimes(1)
+    expect(mockRouter.push).toHaveBeenCalledWith(`/items/${product_no}`)
   })
 });

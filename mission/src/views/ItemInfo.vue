@@ -32,9 +32,9 @@ export default {
   },
   data() {
     return {
-      productInfo: [],
-      sellerInfo: [],
-      reviewInfo: [],
+      productInfo: {},
+      sellerInfo: {},
+      reviewInfo: {},
     };
   },
   computed: {

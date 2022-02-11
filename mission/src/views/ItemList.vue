@@ -1,13 +1,20 @@
 <template>
   <div id="item-list-page" ref="itemListPage">
-    <Header
-      ref="header"
-      @scrollHandler="scrollHandler"
-    />
+    <Header />
 
-    <ItemList
-      :productList="productList"
-    />
+    <div
+      v-for="(item, index) in productList"
+      :key="index"
+      class="product-list"
+      :style="oddStyle(index)"
+      @click="goToDetail(item)"
+      data-test="productList"
+    >
+      <Item
+        :item="item"
+      />
+    </div>
+
     <div style="clear: both;"></div>
 
     <Footer />
@@ -17,7 +24,7 @@
 <script>
 import Header from '@/components/ItemList/Header.vue';
 import Footer from '@/components/ItemList/Footer.vue';
-import ItemList from '@/components/ItemList/Item.vue';
+import Item from '@/components/ItemList/Item.vue';
 
 import Repository from '@/clients/RepositoryFactory';
 
@@ -28,7 +35,7 @@ export default {
   components: {
     Header,
     Footer,
-    ItemList,
+    Item,
   },
   data() {
     return {
@@ -43,19 +50,24 @@ export default {
       const { data } = await GetRepository.getItemList();
       this.productList = data.items;
     },
-    scrollHandler() {
-      window.onscroll = () => {
-        const currentScrollPos = window.pageYOffset;
-        const el = this.$refs.header.$refs.itemListHeader;
-        if (currentScrollPos === 0) {
-          el.style.top = "0";
-          // document.getElementById("item-list-header").style.top = "0";
-        } else {
-          el.style.top = "-20%";
-          // document.getElementById("item-list-header").style.top = "-60px";
-        }
-      };
+    async goToDetail(item) {
+      const productNo = item.product_no;
+      this.$router.push(`/items/${productNo}`);
+    },
+    oddStyle(idx) {
+      if (idx === this.productList.length - 1 && idx % 2 === 0) {
+        return 'float: left';
+      }
+      return '';
     },
   },
 };
 </script>
+
+<style scoped>
+.product-list {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 50%;
+}
+</style>

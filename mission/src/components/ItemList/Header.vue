@@ -19,11 +19,22 @@ export default {
   name: 'Header',
   methods: {
     scrollHandler() {
-      this.$emit('scrollHandler', this.$refs.itemListHeader);
+      const currentScrollPos = window.pageYOffset;
+      const el = this.$refs.itemListHeader;
+      if (currentScrollPos === 0) {
+        el.style.top = "0";
+        // document.getElementById("item-list-header").style.top = "0";
+      } else {
+        el.style.top = "-20%";
+        // document.getElementById("item-list-header").style.top = "-60px";
+      }
     },
   },
   mounted() {
     window.addEventListener('scroll', this.scrollHandler());
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.scrollHandler());
   },
 };
 </script>

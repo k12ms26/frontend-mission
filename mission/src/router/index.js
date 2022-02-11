@@ -20,8 +20,4 @@ const router = createRouter({
   routes,
 });
 
-router.afterEach((to, from) => {
-  if (to.name === 'ItemInfoPage' && from.name === 'ItemListPage') router.go();
-});
-
 export default router;

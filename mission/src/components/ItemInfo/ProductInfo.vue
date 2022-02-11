@@ -50,7 +50,7 @@
         >{{ productInfo.name }}</div>
         <div class="product-price-section">
           <div
-            :v-if="isOnSale()"
+            :v-if="isOnSale"
             class="product-info"
             style="font-size: 18px; color: indianred"
             data-test="productSalePercentage"
@@ -58,14 +58,14 @@
             {{ displaySalePercentage }}%
           </div>
           <div
-            :v-if="isOnSale()"
+            :v-if="isOnSale"
             class="product-info"
             data-test="productSalePrice"
           >
             {{ displaySalePrice }}원
           </div>
           <div
-            :style="isOnSale() && { textDecoration: 'line-through', fontSize: '12px'}"
+            :style="isOnSale && { textDecoration: 'line-through', fontSize: '12px'}"
             class="product-info"
             data-test="productOriginalPrice"
           >
@@ -91,6 +91,8 @@ export default {
     sellerDetail: Object,
   },
   methods: {
+  },
+  computed: {
     isOnSale() {
       const salePrice = this.productInfo.price;
       const originalPrice = this.productInfo.original_price;
@@ -99,8 +101,6 @@ export default {
       if (salePrice !== originalPrice) isOnSale = true;
       return isOnSale;
     },
-  },
-  computed: {
     productInfo() {
       return this.productDetail;
     },
