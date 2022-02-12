@@ -27,7 +27,6 @@ describe('ProductInfoPage', () => {
     expect(wrapper.find('div[data-test="productDescription"]').text()).toBe(description);
   });
 
-  //다시
   test('renders sale price', async () => {
     if(price !== original_price) {
       const salePercentage = Math.floor((1 - (price / original_price)) * 100);
