@@ -28,7 +28,7 @@ describe('CartPage', () => {
 
   test('renders stored cart data', async () => {
     await addToCart(state, data);
-    expect(wrapper.find('span[data-test="totalListLength"]').exists()).toEqual(state.cart.length);
+    expect(wrapper.find('span[data-test="totalListLength"]').text()).toEqual(state.cart.length);
   });
 
   test("link to SuccessPage", async () => {

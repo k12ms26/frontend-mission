@@ -27,7 +27,7 @@ describe('CartPage', () => {
 
   test('renders stored cart data', async () => {
     await addToCart(state, data);
-    expect(wrapper.find('div[data-test="cartList"]').exists()).toEqual(state.cart);
+    expect(wrapper.find('div[data-test="cartList"]').findAll()).toContain(state.cart);
   });
 
   test("link to BuyPage", async () => {
