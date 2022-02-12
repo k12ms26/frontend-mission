@@ -60,7 +60,8 @@ export default {
         alert('이미 장바구니에 담긴 상품입니다.');
       } else {
         // eslint-disable-next-line no-alert
-        alert('상품이 장바구니에 담겼습니다.');
+        const res = window.confirm('상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?');
+        if (res) this.$router.push('/cart');
       }
       this.$store.commit('initDuplicate');
     },

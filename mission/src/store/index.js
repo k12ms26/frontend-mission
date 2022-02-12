@@ -20,6 +20,7 @@ const store = createStore({
       if (state.cart.filter((e) => e.product_no === curCart.product_no).length === 0) {
         // const res = await PostRepository.addItemToCart(curCart.productNo);
         // console.log(res);
+        // getCartList();
         state.cart.push(curCart);
       } else state.isDuplicate = true;
     },

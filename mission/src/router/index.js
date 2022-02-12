@@ -3,6 +3,8 @@ import Menu from '@/views/Menu.vue';
 import ItemInfoPage from '@/views/Items/ItemInfo.vue';
 import ItemListPage from '@/views/Items/ItemList.vue';
 import CartPage from '@/views/Buy/Cart.vue';
+import BuyPage from '@/views/Buy/Buy.vue';
+import SuccessPage from '@/views/Buy/Success.vue';
 
 const routes = [
   {
@@ -19,6 +21,16 @@ const routes = [
         path: 'cart',
         name: '장바구니',
         component: CartPage,
+      },
+      {
+        path: 'buy',
+        name: '구매하기',
+        component: BuyPage,
+      },
+      {
+        path: 'success',
+        name: '구매완료',
+        component: SuccessPage,
       },
     ],
   },

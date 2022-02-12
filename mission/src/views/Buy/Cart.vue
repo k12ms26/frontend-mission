@@ -19,7 +19,7 @@
       <div class="footer">
           <font-awesome-icon
             icon="store"
-            class="footer-icon"
+            class="icon"
           />
           <span v-if="isProductExists">{{ totalPrice }} 원 주문하기</span>
           <span v-else>주문하러 가기</span>
@@ -53,8 +53,6 @@ export default {
       return total.toLocaleString();
     },
   },
-  methods: {
-  },
   mounted() {
     // this.$store.commit('getCartList');
   },
@@ -64,21 +62,5 @@ export default {
 <style scoped>
 .empty-title {
   text-align: center;
-}
-
-.footer {
-  position: fixed;
-  bottom: 60px;
-  background-color: darksalmon;
-  width: 80%;
-  padding: 12px 0;
-  text-align: center;
-  margin: 0 10%;
-  color: whitesmoke;
-}
-
-.footer-icon {
-  font-size: 20px;
-  margin-right: 5px;
 }
 </style>
