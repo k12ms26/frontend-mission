@@ -8,11 +8,13 @@ describe('ItemList', () => {
 
   const wrapper = mount(ItemList, {
     props: {
-      name: name,
-      price: price,
-      image: image,
-      original_price: original_price,
-      description: description,
+      item: {
+        name: name,
+        price: price,
+        image: image,
+        original_price: original_price,
+        description: description,
+      }
     },
   });
 
