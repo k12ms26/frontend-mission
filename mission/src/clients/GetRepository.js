@@ -11,5 +11,5 @@ export default {
   },
   getCartList() {
     return Client.get('/cart');
-  }
+  },
 };

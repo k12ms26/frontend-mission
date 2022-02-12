@@ -52,7 +52,13 @@
 export default {
   name: 'ItemList',
   props: {
-    item: Object,
+    item: {
+      name: String,
+      price: Number,
+      image: String,
+      original_price: Number,
+      description: String,
+    },
   },
   methods: {
     isSale(salePrice) {
