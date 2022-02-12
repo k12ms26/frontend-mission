@@ -5,6 +5,7 @@
         v-for="(item, index) in cartList"
         :key="index"
         class="product-list"
+        data-test="cartList"
       >
         <Item
           :item="item"
@@ -16,7 +17,7 @@
     </div>
 
     <router-link :to="isProductExists ? '/buy' : '/'">
-      <div class="footer">
+      <div class="footer" data-test="buyButton">
           <font-awesome-icon
             icon="store"
             class="icon"

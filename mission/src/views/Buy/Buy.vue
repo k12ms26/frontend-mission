@@ -6,7 +6,11 @@
         class="buy-image"
         data-test="productListImage"
       />
-      <span class="buy-title">{{ thumbTitle }} 포함 {{ cartList.length }}건 {{ totalPrice }}원</span>
+      <span class="buy-title">
+        {{ thumbTitle }} 포함
+        <span data-test="totalListLength">{{ totalListLength }}</span>건
+        {{ totalPrice }}원
+      </span>
     </div>
 
     <form
@@ -74,7 +78,7 @@
     </form>
 
     <router-link to="/success">
-      <div class="footer">
+      <div class="footer" data-test="buyButton">
           <font-awesome-icon
             icon="store"
             class="icon"
@@ -98,6 +102,9 @@ export default {
   computed: {
     cartList() {
       return this.$store.state.cart;
+    },
+    totalListLength() {
+      return this.cartList.length;
     },
     thumbnail() {
       return this.cartList[0].image;

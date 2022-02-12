@@ -9,7 +9,7 @@
     </div>
 
     <router-link to="/">
-      <div class="footer success-footer">
+      <div class="footer success-footer" data-test="backButton">
           메인 화면으로 돌아가기
       </div>
     </router-link>
