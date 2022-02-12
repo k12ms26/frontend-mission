@@ -26,9 +26,7 @@ describe('ItemList', () => {
     expect(wrapper.find('[data-test="productListName"]').text()).toContain(name);
     expect(wrapper.find('img[data-test="productListImage"').attributes('src')).toBe(image);
     expect(wrapper.find('[data-test="productDesc"]').text()).toBe(description);
-  });
 
-  test('renders sale price', async () => {
     if(price !== original_price) {
       const salePercentage = Math.floor((1 - (price / original_price)) * 100);
       expect(wrapper.find('[data-test="productSalePer"]').text()).toContain(salePercentage);
