@@ -41,15 +41,7 @@ describe('ItemListPage', () => {
     await flushPromises();
 
     const itemWrapper = wrapper.findAllComponents(ItemListItem);
-    expect(itemWrapper).toHaveLength(productList.length);
-
-    for (let i=0;i<productList.length;i++) {
-      const currentItemWrapper = itemWrapper[i];
-
-      expect(currentItemWrapper.get('[data-test="productListName"]').text()).toEqual(productList[i].name);
-      expect(currentItemWrapper.get('[data-test="productPrice"]').text()).toEqual(`${productList[i].price.toLocaleString()} 원`);
-      expect(currentItemWrapper.get('[data-test="productDesc"]').text()).toEqual(productList[i].description);
-    }
+    expect(itemWrapper).toEqual(productList);
   });
 
   test("redirect to ItemInfoPage", async () => {
