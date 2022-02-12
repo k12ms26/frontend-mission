@@ -25,9 +25,7 @@ describe('ProductInfoPage', () => {
     expect(wrapper.find('div[data-test="productName"]').text()).toBe(name);
     expect(wrapper.find('div[data-test="productOriginal"]').text()).toBe(original_price.toLocaleString());
     expect(wrapper.find('div[data-test="productDescription"]').text()).toBe(description);
-  });
 
-  test('renders sale price', async () => {
     if(price !== original_price) {
       const salePercentage = Math.floor((1 - (price / original_price)) * 100);
       expect(wrapper.find('div[data-test="productSalePercentage"]').text()).toBe(`${salePercentage} %`);
