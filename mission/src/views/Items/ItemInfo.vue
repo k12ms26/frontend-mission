@@ -22,7 +22,7 @@ import ReviewInfoPage from '@/components/ItemInfo/ReviewInfo.vue';
 
 import Repository from '@/clients/RepositoryFactory';
 
-const GetRepository = Repository.get("item");
+const GetRepository = Repository.get("get");
 
 export default {
   name: 'ItemInfoPage',
@@ -53,7 +53,7 @@ export default {
       this.sellerInfo = data.item.seller;
       this.reviewInfo = data.item.reviews;
     },
-    addProduct() {
+    async addProduct() {
       this.$store.commit('addToCart', this.productInfo);
       if (this.$store.state.isDuplicate) {
         // eslint-disable-next-line no-alert

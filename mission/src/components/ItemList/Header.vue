@@ -57,7 +57,6 @@ export default {
   font-weight: bold;
   color: darksalmon;
   padding: 5%;
-  text-align: left;
 }
 
 </style>

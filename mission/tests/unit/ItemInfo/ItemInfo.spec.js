@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import ItemInfoPage from '@/views/ItemInfo.vue';
+import ItemInfoPage from '@/views/Items/ItemInfo.vue';
 
 describe('ItemInfoPage', () => {
   const wrapper = mount(ItemInfoPage);

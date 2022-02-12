@@ -28,3 +28,9 @@
     display: inline;
     margin-right: 5px;
 }
+
+.product-list {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 50%;
+}

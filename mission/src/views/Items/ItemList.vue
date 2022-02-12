@@ -4,7 +4,6 @@
       v-for="(item, index) in productList"
       :key="index"
       class="product-list"
-      :style="oddStyle(index)"
       @click="goToDetail(item)"
       data-test="productList"
     >
@@ -21,7 +20,7 @@
 import Item from '@/components/ItemList/Item.vue';
 import Repository from '@/clients/RepositoryFactory';
 
-const GetRepository = Repository.get("item");
+const GetRepository = Repository.get("get");
 
 export default {
   name: 'ItemListPage',
@@ -45,20 +44,9 @@ export default {
       const productNo = item.product_no;
       this.$router.push(`/items/${productNo}`);
     },
-    oddStyle(idx) {
-      if (idx === this.productList.length - 1 && idx % 2 === 0) {
-        return 'float: left';
-      }
-      return '';
-    },
   },
 };
 </script>
 
 <style scoped>
-.product-list {
-  display: inline-block;
-  box-sizing: border-box;
-  width: 50%;
-}
 </style>

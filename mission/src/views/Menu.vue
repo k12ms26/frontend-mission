@@ -1,9 +1,9 @@
 <template>
   <div id="menu">
     <Header />
-    <router-view
-      class="menu"
-    ></router-view>
+    <div class="menu">
+      <router-view></router-view>
+    </div>
     <Footer />
   </div>
 </template>
@@ -23,6 +23,12 @@ export default {
 
 <style scoped>
 .menu {
-  margin-top: 80px;
+  margin-top: 20%;
+}
+
+.title {
+  text-align: left;
+  margin: 10% 5%;
+  font-size: 14px;
 }
 </style>
