@@ -84,15 +84,11 @@ export default {
   margin-bottom: 100px;
 }
 
-.item-list-body {
-  margin-top: 60px;
-}
-
 .section {
   width: 90%;
   position: relative;
   display: inline-flex;
-  margin: 10% 2% 3% 2%;
+  margin: 0 2% 3% 2%;
 }
 
 .section::after {
