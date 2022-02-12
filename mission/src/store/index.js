@@ -1,12 +1,22 @@
 import { createStore } from 'vuex';
 
-export default createStore({
-  state: {
+const store = createStore({
+  state() {
+    return {
+      cart: [],
+      isDuplicate: false,
+    };
   },
   mutations: {
-  },
-  actions: {
-  },
-  modules: {
+    addToCart(state, curCart) {
+      if (state.cart.filter((e) => e.product_no).length === 0) {
+        state.cart.push(curCart);
+      } else state.isDuplicate = true;
+    },
+    initDuplicate(state) {
+      state.isDuplicate = false;
+    },
   },
 });
+
+export default store;

@@ -9,7 +9,7 @@
     />
 
     <div class='fixed-cart-button'>
-      <button data-test='buyProduct' class="buy-button">
+      <button data-test='buyProduct' class="buy-button" @click="addProduct">
         {{ displayPrice }}원 구매
       </button>
     </div>
@@ -52,6 +52,17 @@ export default {
       this.productInfo = data.item;
       this.sellerInfo = data.item.seller;
       this.reviewInfo = data.item.reviews;
+    },
+    addProduct() {
+      this.$store.commit('addToCart', this.productInfo);
+      if (this.$store.state.isDuplicate) {
+        // eslint-disable-next-line no-alert
+        alert('이미 장바구니에 담긴 상품입니다.');
+      } else {
+        // eslint-disable-next-line no-alert
+        alert('상품이 장바구니에 담겼습니다.');
+      }
+      this.$store.commit('initDuplicate');
     },
   },
   created() {

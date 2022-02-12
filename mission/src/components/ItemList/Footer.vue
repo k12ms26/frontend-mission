@@ -1,21 +1,25 @@
 <template>
   <div class="item-list-footer">
     <div>
-      <font-awesome-icon
-        icon="home"
-        class="footer-icon"
-        data-test="homeIcon"
-      />
+      <router-link to="/">
+        <font-awesome-icon
+          icon="home"
+          class="footer-icon"
+          data-test="homeIcon"
+        />
+      </router-link>
       <font-awesome-icon
         icon="heart"
         class="footer-icon"
         data-test="likeIcon"
       />
-      <font-awesome-icon
-        icon="shopping-cart"
-        class="footer-icon"
-        data-test="cartIcon"
-      />
+      <router-link to="/cart">
+        <font-awesome-icon
+          icon="shopping-cart"
+          class="footer-icon"
+          data-test="cartIcon"
+        />
+      </router-link>
     </div>
   </div>
 </template>
