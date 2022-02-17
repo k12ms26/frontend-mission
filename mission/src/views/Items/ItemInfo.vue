@@ -9,7 +9,7 @@
     />
 
     <div class='fixed-cart-button'>
-      <button data-test='buyProduct' class="buy-button">
+      <button data-test='buyProduct' class="buy-button" @click="addProduct">
         {{ displayPrice }}원 구매
       </button>
     </div>
@@ -22,7 +22,7 @@ import ReviewInfoPage from '@/components/ItemInfo/ReviewInfo.vue';
 
 import Repository from '@/clients/RepositoryFactory';
 
-const GetRepository = Repository.get("item");
+const GetRepository = Repository.get("get");
 
 export default {
   name: 'ItemInfoPage',
@@ -32,9 +32,9 @@ export default {
   },
   data() {
     return {
-      productInfo: [],
-      sellerInfo: [],
-      reviewInfo: [],
+      productInfo: {},
+      sellerInfo: {},
+      reviewInfo: {},
     };
   },
   computed: {
@@ -52,6 +52,18 @@ export default {
       this.productInfo = data.item;
       this.sellerInfo = data.item.seller;
       this.reviewInfo = data.item.reviews;
+    },
+    async addProduct() {
+      this.$store.commit('addToCart', this.productInfo);
+      if (this.$store.state.isDuplicate) {
+        // eslint-disable-next-line no-alert
+        alert('이미 장바구니에 담긴 상품입니다.');
+      } else {
+        // eslint-disable-next-line no-alert
+        const res = window.confirm('상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?');
+        if (res) this.$router.push('/cart');
+      }
+      this.$store.commit('initDuplicate');
     },
   },
   created() {

@@ -1,12 +1,38 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import ItemListPage from '@/views/ItemList.vue';
-import ItemInfoPage from '@/views/ItemInfo.vue';
+import Menu from '@/views/Menu.vue';
+import ItemInfoPage from '@/views/Items/ItemInfo.vue';
+import ItemListPage from '@/views/Items/ItemList.vue';
+import CartPage from '@/views/Buy/Cart.vue';
+import BuyPage from '@/views/Buy/Buy.vue';
+import SuccessPage from '@/views/Buy/Success.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'ItemListPage',
-    component: ItemListPage,
+    name: 'Menu',
+    component: Menu,
+    children: [
+      {
+        path: '',
+        name: '판매 중인 상품',
+        component: ItemListPage,
+      },
+      {
+        path: 'cart',
+        name: '장바구니',
+        component: CartPage,
+      },
+      {
+        path: 'buy',
+        name: '구매하기',
+        component: BuyPage,
+      },
+      {
+        path: 'success',
+        name: '구매완료',
+        component: SuccessPage,
+      },
+    ],
   },
   {
     path: '/items/:productNo',
@@ -18,10 +44,6 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-});
-
-router.afterEach((to, from) => {
-  if (to.name === 'ItemInfoPage' && from.name === 'ItemListPage') router.go();
 });
 
 export default router;

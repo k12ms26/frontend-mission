@@ -1,13 +1,15 @@
 import Client from '@/clients/AxiosClient';
 
-const resource = '/item';
+const itemResource = '/item';
 
 export default {
   getItemList() {
-    return Client.get(`${resource}`);
+    return Client.get(`${itemResource}`);
   },
   getItemDetail(itemNo) {
-    return Client.get(`${resource}/${itemNo}`);
+    return Client.get(`${itemResource}/${itemNo}`);
   },
-  // MANY OTHER ENDPOINT RELATED STUFFS
+  getCartList() {
+    return Client.get('/cart');
+  },
 };

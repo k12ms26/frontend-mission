@@ -28,3 +28,25 @@
     display: inline;
     margin-right: 5px;
 }
+
+.product-list {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 50%;
+}
+
+.footer {
+    position: fixed;
+    bottom: 60px;
+    background-color: darksalmon;
+    width: 80%;
+    padding: 12px 0;
+    text-align: center;
+    margin: 0 10%;
+    color: whitesmoke;
+  }
+  
+.icon {
+    font-size: 20px;
+    margin-right: 5px;
+}

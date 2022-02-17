@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils';
-import ItemInfoPage from '@/views/ItemInfo.vue';
+import ItemInfoPage from '@/views/Items/ItemInfo.vue';
+import { mutations } from '@/store/index';
 
 describe('ItemInfoPage', () => {
   const wrapper = mount(ItemInfoPage);
@@ -31,5 +32,22 @@ describe('ItemInfoPage', () => {
     } else {
       expect(wrapper.find('button[data-test="buyProduct"]').text()).toContain(`${Number(originalPrice).toLocaleString()}`);
     }
+  });
+
+  test('renders cart alert : stored successfully', async () => {
+    const { addToCart, initDuplicate } = mutations;
+    const data = {
+      name: 'hi',
+      price: 10000
+    };
+    const state = { isDuplicate: true, cart: [] };
+
+    await initDuplicate(state);
+    expect(state.isDuplicate).to.equal(false);
+
+    jest.spyOn(window, 'confirm').mockImplementation(() => { });
+    await wrapper.get('button[data-test="buyProduct"]').trigger('click');
+    await addToCart(state, data);
+    expect(window.confirm).toBeCalledWith('상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?');
   });
 });

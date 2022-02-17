@@ -1,7 +1,9 @@
 import GetRepository from './GetRepository';
+import PostRepository from './PostRepository';
 
 const repositories = {
-  item: GetRepository,
+  get: GetRepository,
+  post: PostRepository,
 };
 
 export default {

@@ -2,56 +2,47 @@
     <div
       class="item-list-body"
     >
-      <div
-        v-for="(item, index) in products"
-        :key="index"
-        class="product-list"
-        :style="oddStyle(index)"
-        @click="goToDetail(item)"
-        data-test="productList"
-      >
-        <div class="section">
-          <img
-            :src="item.image"
-            class="product-list-image"
-            data-test="productListImage"
-          />
-        </div>
+      <div class="section">
+        <img
+          :src="item.image"
+          class="product-list-image"
+          data-test="productListImage"
+        />
+      </div>
 
+      <div
+        class="info-section"
+      >
+        <div>
+          <div
+            v-if="isSale(item.price)"
+            class="sale-per-section"
+          >
+            <div
+              class="product-list-sale-percentage"
+              data-test="productSalePer"
+            >{{ displaySalePercentage(item) }} %</div>
+          </div>
+          <div
+            class="price-section"
+          >
+            <div
+              class="product-list-price"
+              data-test="productPrice"
+            >{{ displayPrice(item) }} 원</div>
+          </div>
+        </div>
         <div
-          class="info-section"
+          class="product-list-name"
+          data-test="productListName"
         >
-          <div>
-            <div
-              v-if="isSale(item.price)"
-              class="sale-per-section"
-            >
-              <div
-                class="product-list-sale-percentage"
-                data-test="productSalePer"
-              >{{ displaySalePercentage(item) }} %</div>
-            </div>
-            <div
-              class="price-section"
-            >
-              <div
-                class="product-list-price"
-                data-test="productPrice"
-              >{{ displayPrice(item) }} 원</div>
-            </div>
-          </div>
-          <div
-            class="product-list-name"
-            data-test="productListName"
-          >
-            {{ item.name }}
-          </div>
-          <div
-            class="product-list-description"
-            data-test="productDesc"
-          >
-            {{ item.description }}
-          </div>
+          {{ item.name }}
+        </div>
+        <div
+          class="product-list-description"
+          data-test="productDesc"
+        >
+          {{ item.description }}
         </div>
       </div>
     </div>
@@ -61,19 +52,15 @@
 export default {
   name: 'ItemList',
   props: {
-    productList: Object,
+    item: {
+      name: String,
+      price: Number,
+      image: String,
+      original_price: Number,
+      description: String,
+    },
   },
   methods: {
-    async goToDetail(item) {
-      const productNo = item.product_no;
-      this.$router.push(`/items/${productNo}`);
-    },
-    oddStyle(idx) {
-      if (idx === this.products.length - 1 && idx % 2 === 0) {
-        return 'float: left';
-      }
-      return '';
-    },
     isSale(salePrice) {
       if (salePrice) return true;
       return false;
@@ -95,11 +82,6 @@ export default {
       return price.toLocaleString();
     },
   },
-  computed: {
-    products() {
-      return this.productList;
-    },
-  },
 };
 </script>
 
@@ -108,21 +90,11 @@ export default {
   margin-bottom: 100px;
 }
 
-.item-list-body {
-  margin-top: 60px;
-}
-
-.product-list {
-  display: inline-block;
-  box-sizing: border-box;
-  width: 50%;
-}
-
 .section {
   width: 90%;
   position: relative;
   display: inline-flex;
-  margin: 10% 2% 3% 2%;
+  margin: 0 2% 3% 2%;
 }
 
 .section::after {
